@@ -7,9 +7,9 @@ output: html_document
 
 # Packages used in this assignment
 ```{r, Packages}
-# install.packages("downloader")
-# install.packages("dplyr")
-# install.packages("lubridate")
+install.packages("downloader")
+install.packages("dplyr")
+install.packages("lubridate")
 library(rmarkdown)
 library(downloader)
 library(dplyr)
@@ -28,7 +28,7 @@ the course web site:
 ```{r, DownloadingData}
 url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 download(url, dest="project_dataset.zip", mode="wb") 
-unzip("project_dataset.zip", exdir = "./COURSE4EXPLORATORY/data")
+unzip("project_dataset.zip", exdir = "./data")
 ```
 
 ## Reading the downloaded and unzipped file 
@@ -38,7 +38,7 @@ The code below will point R to that folder to look for the file and read in the 
 ```{r, ReadingDataSet}
 ## for help:
 # ??read.table
-file <- list.files("./COURSE4EXPLORATORY/data", pattern = "txt", full.names = TRUE)
+file <- list.files("./data", pattern = "txt", full.names = TRUE)
 data <- read.table(file, sep = ";", header = TRUE, na.strings = "?")
 ```
 
@@ -78,8 +78,14 @@ head(data)
 Generating the graphs for the assignment
 
 ```{r, Exploring_Graph1_GlobalActivePower}
+names(data_twoDays)
+png
+hist(data_twoDays$global_active_power, col = "red", xlab = "Global Active Power", ylab = "Frequency", main = "Global Active Power")
 
-hist(data_twoDays$)
+
+
+
+
  
 ``` 
 
