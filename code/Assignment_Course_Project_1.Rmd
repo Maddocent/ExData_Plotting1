@@ -79,7 +79,7 @@ Generating the graphs for the assignment
 
 ```{r, Exploring_Graph1_GlobalActivePower}
 
-
+hist(data_twoDays$)
  
 ``` 
 
