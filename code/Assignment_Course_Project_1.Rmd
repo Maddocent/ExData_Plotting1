@@ -1,0 +1,85 @@
+---
+title: "Project_ExploratoryDataAnalysis"
+author: "Marc A.T. Teunis"
+date: "5 juni 2016"
+output: html_document
+---
+
+# Packages used in this assignment
+```{r, Packages}
+# install.packages("downloader")
+# install.packages("dplyr")
+# install.packages("lubridate")
+library(rmarkdown)
+library(downloader)
+library(dplyr)
+library(lubridate)
+```
+
+# Getting the dataset for the project assignment
+This assignment uses data from
+the <a href="http://archive.ics.uci.edu/ml/">UC Irvine Machine
+Learning Repository</a>, a popular repository for machine learning
+datasets. In particular, we will be using the "Individual household
+electric power consumption Data Set" which I have made available on
+the course web site:
+
+## Downloading the zip file, unzipping it and reading the data
+```{r, DownloadingData}
+url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+download(url, dest="project_dataset.zip", mode="wb") 
+unzip("project_dataset.zip", exdir = "./COURSE4EXPLORATORY/data")
+```
+
+## Reading the downloaded and unzipped file 
+The code above downloads and unzipped the zipped dataset file into the 
+data folder ("./COURSE4EXPLORATORY/data").
+The code below will point R to that folder to look for the file and read in the data from it. The datafile is called:  "household_powerconsumption.txt"
+```{r, ReadingDataSet}
+## for help:
+# ??read.table
+file <- list.files("./COURSE4EXPLORATORY/data", pattern = "txt", full.names = TRUE)
+data <- read.table(file, sep = ";", header = TRUE, na.strings = "?")
+```
+
+# Selecting the right data 
+For the assignment it is necessary to select data only between dates:
+2007-02-01 and 2007-02-02
+```{r, SelectingCases}
+str(data)
+tail(data)
+## names to lower
+names(data) <- tolower(names(data))
+names(data)
+
+data$date <- as.character(data$date)
+head(data)
+data_selected_1 <- data %>% filter(date == "1/2/2007")
+data_selected_2 <- data %>% filter(date == "2/2/2007")
+
+data_twoDays <- rbind(data_selected_1,data_selected_2)
+head(data_twoDays)
+tail(data_twoDays)
+```
+
+# Converting the date variable to a data class object
+```{r}
+data$date <- as.character(data$date)
+data$date <- dmy(data$date)
+head(data)
+str(data)
+?lubridate
+
+str(data)
+head(data)
+```
+
+# Exploring the data 
+Generating the graphs for the assignment
+
+```{r, Exploring_Graph1_GlobalActivePower}
+
+
+ 
+``` 
+
