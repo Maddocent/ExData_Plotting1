@@ -1,6 +1,7 @@
 ##################################################################################################################################
-## Edit by author Marc A.T. Teunis,
-The materials for this assignment (project 1 assignment for Course 4: "Exploratory Data Analyses", Coursera "Data Science Specialization" can be found in:
+
+## --- Edit by repository author Marc A.T. Teunis ---
+The materials for this assignment (project 1 assignment) for Course 4: "Exploratory Data Analyses", Coursera "Data Science Specialization" can be found in:
 "./images" -> contains the plots
 "./code" -> contains the complete Rmarkdown file to download the data and create the plots, and individual markdown and R files to create the seperate plots 
 ##################################################################################################################################
