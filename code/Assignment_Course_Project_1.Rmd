@@ -125,8 +125,8 @@ which_day[1]
 # Exploring the data
 Generating the graph for the assignment "project 1"
 
-## Plot 1
-```{r, Graph1_GlobalActivePower}
+## Plot 1 -> "./images/plot1.png"
+```{r, Plot1}
 names(data_twoDays)
 
 ## save the file
@@ -135,8 +135,8 @@ hist(data_twoDays$global_active_power, col = "red", xlab = "Global Active Power"
 dev.off()  
 ``` 
 
-## Plot 2
-```{r, Graph2_GAP_perDay}
+## Plot 2 -> "./images/plot2.png"
+```{r, Plot2}
 levels_date <- levels(as.factor(data_twoDays$date))
 
 ## plot2.png in ggplot2 syntax 
@@ -144,7 +144,7 @@ png(filename = "./images/plot2.png", width = 480, height = 480, units = "px")
 names(data_twoDays)
 plot2 <- ggplot(data_twoDays, aes(date_time, global_active_power))
 plot2 + geom_line() +
-  scale_x_datetime(date_breaks = "1 day", date_labels = c("Saturday", "Thursday", "Friday")) +
+  scale_x_datetime(date_breaks = "1 day", date_labels = c("Sat", "Thu", "Fri")) +
   ylab("Global Active Power (kilowatts)") + 
 theme_bw() +
   theme(panel.grid.major = element_blank(),
@@ -155,11 +155,36 @@ theme_bw() +
         axis.title.y = element_text(size = 14)) +
   theme(plot.margin = unit(c(1,1,1,1), "cm"))
 dev.off()
+```
+
+# Plot 3
+## plot2.png in ggplot2 syntax 
+```{r, Plot3}
+
+png(filename = "./images/plot3.png", width = 480, height = 480, units = "px")
+names(data_twoDays)
+plot3 <- ggplot(data_twoDays, aes(x = date_time))
+plot3 + 
+  geom_line(aes(y = sub_metering_1, color = "Sub_metering_1")) +
+  geom_line(aes(y = sub_metering_2, color = "Sub_metering_2")) +
+  geom_line(aes(y = sub_metering_3, color = "Sub_metering_3")) +
+  scale_x_datetime(date_breaks = "1 day", date_labels = c("Sat", "Thu", "Fri")) +
+  ylab("Energy sub metering") +
+  scale_colour_manual("", values = c("Sub_metering_1" = "black", 
+                                     "Sub_metering_2" = "red",
+                                     "Sub_metering_3" = "blue")) +
+theme_bw() +
+theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 14),
+        axis.title.y = element_text(size = 14)) +
+  theme(plot.margin = unit(c(1,1,1,1), "cm")) +
+  theme(legend.position=c(0.9, 1)) +
+  theme(legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+dev.off()
+```
 
 
- +
-        margin(t = 2, r = 2, b = 2, l = 2, unit = "pt")
-?margin
-?scale_x_datetime
-??plot.margin
 
