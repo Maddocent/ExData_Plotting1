@@ -1,12 +1,4 @@
----
-title: "Project_ExploratoryDataAnalysis"
-author: "Marc A.T. Teunis"
-date: "5 juni 2016"
-output: html_document
----
-
-# Packages used in this assignment
-```{r, Packages}
+## ---- Packages-----------------------------------------------------------
 # install.packages("downloader")
 # install.packages("dplyr")
 # install.packages("lubridate")
@@ -24,38 +16,19 @@ library(grid)
 library(gridExtra)
 library(cowplot)
 
-```
 
-# Getting the dataset for the project assignment
-This assignment uses data from
-the http://archive.ics.uci.edu/ml/ Irvine Machine
-Learning Repository</a>, a popular repository for machine learning
-datasets. In particular, we will be using the "Individual household
-electric power consumption Data Set" which I have made available on
-the course web site:
-
-# Downloading the zip file, unzipping it and reading the data
-```{r, DownloadingData}
+## ---- DownloadingData----------------------------------------------------
 url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 download(url, dest="project_dataset.zip", mode="wb") 
 unzip("project_dataset.zip", exdir = "./data")
-```
 
-# Reading the downloaded and unzipped file 
-The code above downloads and unzipped the zipped dataset file into the 
-data folder ("./data").
-The code below will point R to that folder to look for the file and read in the data from it. The datafile is called:  "household_powerconsumption.txt"
-```{r, ReadingDataSet}
+## ---- ReadingDataSet-----------------------------------------------------
 ## for help:
 # ??read.table
 file <- list.files("./data", pattern = "txt", full.names = TRUE)
 data <- read.table(file, sep = ";", header = TRUE, na.strings = "?")
-```
 
-# Selecting the right cases 
-For the assignment it is necessary to select data only between dates:
-2007-02-01 and 2007-02-02
-```{r, SelectingCases}
+## ---- SelectingCases-----------------------------------------------------
 str(data)
 tail(data)
 ## names to lower
@@ -70,10 +43,8 @@ data_selected_2 <- data %>% filter(date == "2/2/2007")
 data_twoDays <- rbind(data_selected_1,data_selected_2)
 head(data_twoDays)
 tail(data_twoDays)
-```
 
-# Converting the date variable to a date class object "POSIXlt"
-```{r}
+## ------------------------------------------------------------------------
 # converting to "character"
 data_twoDays$date <- as.character(data_twoDays$date)
 data_twoDays$time <- as.character(data_twoDays$time)
@@ -126,86 +97,8 @@ which_day <- dow_df %>% filter(POSIXlt_code == 4)
 ## The final answer:
 which_day[1]
 
-```
 
-# Exploring the data
-Generating the graph for the assignment "project 1" Course 4: Exploratory Data Analysis - Coursera Data Science Specialization
-
-## Plot 1 -> "./images/plot1.png"
-plot1.png in ggplot2 syntax 
-```{r, Plot1}
-names(data_twoDays)
-
-## save the file
-png(filename = "./images/plot1.png", width = 480, height = 480, units = "px")
-hist(data_twoDays$global_active_power, col = "red", xlab = "Global Active Power", ylab = "Frequency", main = "Global Active Power")
-dev.off()  
-``` 
-
-# Plot 2 -> "./images/plot2.png"
-plot2.png in ggplot2 syntax 
-```{r, Plot2}
-levels_date <- levels(as.factor(data_twoDays$date))
-
-## plot2.png in ggplot2 syntax 
-names(data_twoDays)
-
-
-plot2 <- ggplot(data_twoDays, aes(date_time, global_active_power)) + 
-  geom_line() +
-  scale_x_datetime(date_breaks = "1 day", date_labels = c("Sat", "Thu", "Fri")) +
-  ylab("Global Active Power (kilowatts)") + 
-theme_bw() +
-  theme(panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.title.x = element_blank(),
-        axis.text.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14)) +
-  theme(plot.margin = unit(c(1,1,1,1), "cm"))
-
-# saving the plot to disk
-png(filename = "./images/plot2.png", width = 480, height = 480, units = "px")
-plot2
-dev.off()
-```
-
-# Plot 3 -> "./images/plot3.png"
-plot3.png in ggplot2 syntax 
-```{r, Plot3}
-# checking the names
-names(data_twoDays)
-
-# creating plot3 with ggplot
-plot3 <- ggplot(data_twoDays, aes(x = date_time)) + 
-  geom_line(aes(y = sub_metering_1, color = "Sub_metering_1")) +
-  geom_line(aes(y = sub_metering_2, color = "Sub_metering_2")) +
-  geom_line(aes(y = sub_metering_3, color = "Sub_metering_3")) +
-  scale_x_datetime(date_breaks = "1 day", date_labels = c("Sat", "Thu", "Fri")) +
-  ylab("Energy sub metering") +
-  scale_colour_manual("", values = c("Sub_metering_1" = "black", 
-                                     "Sub_metering_2" = "red",
-                                     "Sub_metering_3" = "blue")) +
-theme_bw() +
-theme(panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.title.x = element_blank(),
-        axis.text.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14)) +
-  theme(plot.margin = unit(c(1,1,1,1), "cm")) +
-  theme(legend.position=c(0.7, 0.9)) +
-  theme(legend.background = element_rect(fill="gray95", size=.3, linetype="dotted"))
-
-# saving the plot to disk
-png(filename = "./images/plot3.png", width = 480, height = 480, units = "px")
-plot3
-dev.off()
-```
-
-# Plot 4 -> "./images/plot4.png"
-plot4.png in ggplot2 syntax 
-```{r, Plot4}
+## ---- Plot4--------------------------------------------------------------
 # checking names
 names(data_twoDays)
 
@@ -254,4 +147,4 @@ png(filename = "./images/plot4.png", width = 480, height = 480, units = "px")
 plot4
 dev.off()
 
-```
+
