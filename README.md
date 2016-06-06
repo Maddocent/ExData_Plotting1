@@ -5,9 +5,9 @@ The materials for this assignment (project 1 assignment) for Course 4: "Explorat
 
 "./images" -> contains the plots ("plot1.png", "plot2.png", "plot3.png", "plot4.png"
 
-"./code/image_code" -> contains the 4 R files to create the seperate plots ("plot1.R", "plot2.R", "plot3.R", "plot4.R") 
+"./code/plots_code" -> contains the 4 R files to create the seperate plots ("plot1.R", "plot2.R", "plot3.R", "plot4.R") 
 
-The complete code can be found in "./code" -> "Assignment_Course_Project_1.Rmd"
+The complete code (both in R and Rmd) can be found in "./code" -> "Assignment_Course_Project_1.R" and "Assignment_Course_Project_1.Rmd"
 
 ##################################################################################################################################
 
