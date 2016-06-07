@@ -1,3 +1,6 @@
 library(rmarkdown)
 library(knitr)
-purl("./code/Assignment_Course_Project_1.Rmd")
+?purl
+
+purl(input = "./code/Assignment_Course_Project_1.Rmd", 
+     output = "./code/Assignment_Course_Project_1.R")

@@ -40,7 +40,7 @@ head(data)
 data_selected_1 <- data %>% filter(date == "1/2/2007")
 data_selected_2 <- data %>% filter(date == "2/2/2007")
 
-data_twoDays <- rbind(data_selected_1,data_selected_2)
+data_twoDays <- rbind(data_selected_1, data_selected_2)
 head(data_twoDays)
 tail(data_twoDays)
 
