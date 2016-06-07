@@ -195,7 +195,7 @@ theme(panel.grid.major = element_blank(),
 
 # creating the panel with plot_grid 
 plot4 <- plot_grid(plot2, plot5, plot3, plot6,
-          labels=c("A", "B", "C", "D"), ncol = 2, nrow = 2)
+                   ncol = 2, nrow = 2)
 
 # saving plot 4 to disk
 png(filename = "./images/plot4.png", width = 480, height = 480, units = "px")
