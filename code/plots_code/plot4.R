@@ -146,7 +146,7 @@ theme(panel.grid.major = element_blank(),
         axis.title.y = element_text(size = 14)) +
   theme(plot.margin = unit(c(1,1,1,1), "cm")) +
   theme(legend.position=c(0.7, 0.9)) +
-  theme(legend.background = element_rect(fill="gray95", size=.3, linetype="dotted"))
+  #theme(legend.background = element_rect(fill="gray95", size=.3, linetype="dotted"))
 
 # saving the plot to disk
 png(filename = "./images/plot3.png", width = 480, height = 480, units = "px")
