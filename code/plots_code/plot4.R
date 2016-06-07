@@ -98,6 +98,61 @@ which_day <- dow_df %>% filter(POSIXlt_code == 4)
 which_day[1]
 
 
+## ---- Plot2--------------------------------------------------------------
+levels_date <- levels(as.factor(data_twoDays$date))
+
+## plot2.png in ggplot2 syntax 
+names(data_twoDays)
+
+
+plot2 <- ggplot(data_twoDays, aes(date_time, global_active_power)) + 
+  geom_line() +
+  scale_x_datetime(date_breaks = "1 day", date_labels = c("Sat", "Thu", "Fri")) +
+  ylab("Global Active Power (kilowatts)") + 
+theme_bw() +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 14),
+        axis.title.y = element_text(size = 14)) +
+  theme(plot.margin = unit(c(1,1,1,1), "cm"))
+
+# saving the plot to disk
+png(filename = "./images/plot2.png", width = 480, height = 480, units = "px")
+plot2
+dev.off()
+
+## ---- Plot3--------------------------------------------------------------
+# checking the names
+names(data_twoDays)
+
+# creating plot3 with ggplot
+plot3 <- ggplot(data_twoDays, aes(x = date_time)) + 
+  geom_line(aes(y = sub_metering_1, color = "Sub_metering_1")) +
+  geom_line(aes(y = sub_metering_2, color = "Sub_metering_2")) +
+  geom_line(aes(y = sub_metering_3, color = "Sub_metering_3")) +
+  scale_x_datetime(date_breaks = "1 day", date_labels = c("Sat", "Thu", "Fri")) +
+  ylab("Energy sub metering") +
+  scale_colour_manual("", values = c("Sub_metering_1" = "black", 
+                                     "Sub_metering_2" = "red",
+                                     "Sub_metering_3" = "blue")) +
+theme_bw() +
+theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 14),
+        axis.title.y = element_text(size = 14)) +
+  theme(plot.margin = unit(c(1,1,1,1), "cm")) +
+  theme(legend.position=c(0.7, 0.9)) +
+  theme(legend.background = element_rect(fill="gray95", size=.3, linetype="dotted"))
+
+# saving the plot to disk
+png(filename = "./images/plot3.png", width = 480, height = 480, units = "px")
+plot3
+dev.off()
+
 ## ---- Plot4--------------------------------------------------------------
 # checking names
 names(data_twoDays)
