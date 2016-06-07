@@ -103,7 +103,7 @@ names(data_twoDays)
 
 ## save the file
 png(filename = "./images/plot1.png", width = 480, height = 480, units = "px")
-hist(data_twoDays$global_active_power, col = "red", xlab = "Global Active Power", ylab = "Frequency", main = "Global Active Power")
+hist(data_twoDays$global_active_power, col = "red", xlab = "Global Active Power (kilowatts)", ylab = "Frequency", main = "Global Active Power")
 dev.off()  
 
 
