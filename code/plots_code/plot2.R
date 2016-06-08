@@ -65,37 +65,7 @@ date_time_var <- data_twoDays$date_time
 head(date_time_var)
 typeof(date_time_var)
 
-POSIXlt
 
-# The POSIXlt data type is a vector, and the entries in the vector have 
-# the following meanings:
-# [[1]] seconds
-# [[2]] minutes
-# [[3]] hours
-# [[4]] day of month (1-31)
-# [[5]] month of the year (0-11)
-# [[6]] years since 1900
-# [[7]] day of the week (0-6 where 0 represents Sunday)
-# [[8]] day of the year (0-365)
-# [[9]] Daylight savings indicator (positive if it is daylight 
-#       savings)
-
-## Question what day of the week is 1/2/2007?
-date_time_var[1][[7]]
-
-## the answer is four
-## making a look-up table df
-days_of_the_week <- c("Sunday", "Monday", "Thuesday", "Wednesday",
-                    "Thursday", "Friday", "Saturday")
-POSIXlt_code <- c(0:6)
-
-dow_df <- cbind(days_of_the_week, POSIXlt_code)
-dow_df <- as.data.frame(dow_df)
-names(dow_df)
-which_day <- dow_df %>% filter(POSIXlt_code == 4)
-
-## The final answer:
-which_day[1]
 
 
 ## ---- Plot2--------------------------------------------------------------
