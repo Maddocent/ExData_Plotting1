@@ -1,13 +1,18 @@
 ################################################
 ## SWIRL EXERCISES ##
 ################################################
-
 # install.packages("RCurl")
-# install.packages("swirl")
+install.packages("swirl")
+
+search()
+
+PROJHOME
 
 library(swirl)
 install_from_swirl("Exploratory Data Analysis")
 swirl()
+
+
 
 ## Then, follow the menus and select the Exploratory Data Analysis 
 ## course when given the option. 
